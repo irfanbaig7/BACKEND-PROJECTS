@@ -10,4 +10,12 @@ const readRecordsById = (req, res) => {
   res.send("Read record by id");
 };
 
-export { createNewRecords, getAllRecord, readRecordsById };
+const updateRecordsById = (req, res) => {
+  res.send("update record By Id");
+};
+
+const deleteRecordsById = (req, res) => {
+  res.send("Delete Record By Id");
+};
+
+export { createNewRecords, getAllRecord, readRecordsById, updateRecordsById, deleteRecordsById };
