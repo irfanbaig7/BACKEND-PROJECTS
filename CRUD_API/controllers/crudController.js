@@ -1,9 +1,27 @@
-const getAllRecord = (req, res) => {
-  res.send("get all Details and satisfication");
+import studentModel from "../models/crudsSchema.js";
+
+const createNewRecords = async (req, res) => {
+  try {
+    const data = await studentModel({
+      name: "irfan",
+      age: 21,
+      city: "Chhtrapati Sambhajinagar",
+      fees: 2500.5
+    })
+    if (data) {
+      await data.save()
+      console.log("new record cereated");
+    }
+    res.send(data)
+
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-const createNewRecords = (req, res) => {
-  res.send("get all Create Records");
+
+const getAllRecord = (req, res) => {
+  res.send("get all Details and satisfication");
 };
 
 const readRecordsById = (req, res) => {
