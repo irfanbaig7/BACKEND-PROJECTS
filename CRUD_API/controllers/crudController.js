@@ -22,32 +22,56 @@ const createNewRecords = async (req, res) => {
   }
 };
 
-
 const getAllRecord = async (req, res) => {
 
   try {
     const data = await studentModel.find({})
     res.send(data)
-    
+    console.log("Get All Record");
+
   } catch (error) {
     console.log(error.message);
-    
+
   }
 
-
-  res.send("get all records");
 };
 
-const readRecordsById = (req, res) => {
-  res.send("Read record by id");
+const readRecordsById = async (req, res) => {
+
+  try {
+    const data = await studentModel.findById(req.params.id)
+    res.send(data)
+    console.log("Read record by id");
+  } catch (error) {
+    console.log(error.message);
+
+  }
+
 };
 
-const updateRecordsById = (req, res) => {
-  res.send("update record By Id");
+const updateRecordsById = async (req, res) => {
+
+  try {
+    const result = await studentModel.findByIdAndUpdate(req.params.id, req.body)
+    res.send(result)
+    console.log("Update Record By Id");
+  } catch (error) {
+    console.log(error.message);
+  }
+
 };
 
-const deleteRecordsById = (req, res) => {
-  res.send("Delete Record By Id");
+const deleteRecordsById = async (req, res) => {
+
+  try {
+    const deleteRec = await studentModel.findByIdAndDelete(req.params.id)
+    res.send(deleteRec)
+    console.log("Delete Record By Id");
+
+  } catch (error) {
+    console.log(error.message);
+
+  }
 };
 
 export { createNewRecords, getAllRecord, readRecordsById, updateRecordsById, deleteRecordsById };
