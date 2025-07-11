@@ -7,7 +7,10 @@ import route from "./routes/route.js";
 
 // database connection
 connectDB(DATABASE_URL);
- 
+
+// api
+app.use(express.json())
+
 // route
 app.use("/", route)
 

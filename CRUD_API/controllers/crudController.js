@@ -2,11 +2,14 @@ import studentModel from "../models/crudsSchema.js";
 
 const createNewRecords = async (req, res) => {
   try {
+
+    const { name, city, fees, age } = req.body
+
     const data = await studentModel({
-      name: "irfan",
-      age: 21,
-      city: "Chhtrapati Sambhajinagar",
-      fees: 2500.5
+      name: name,
+      age: age,
+      city: city,
+      fees: fees
     })
     if (data) {
       await data.save()
