@@ -23,8 +23,19 @@ const createNewRecords = async (req, res) => {
 };
 
 
-const getAllRecord = (req, res) => {
-  res.send("get all Details and satisfication");
+const getAllRecord = async (req, res) => {
+
+  try {
+    const data = await studentModel.find({})
+    res.send(data)
+    
+  } catch (error) {
+    console.log(error.message);
+    
+  }
+
+
+  res.send("get all records");
 };
 
 const readRecordsById = (req, res) => {
