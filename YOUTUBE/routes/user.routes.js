@@ -26,6 +26,6 @@ router.post("/signup", async (req, res) => {
     } catch (error) {
         console.log(error.message);
     }
-})
+}) 
 
 export default router
