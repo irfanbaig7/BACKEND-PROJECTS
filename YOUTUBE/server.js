@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import fileUpload from "express-fileupload"
+import bodyparser from "body-parser"
 
 
 import { connectDB } from './config/db.config.js';
@@ -10,6 +12,15 @@ dotenv.config();
 const app = express();
 
 connectDB();            
+
+
+app.use(bodyparser.json())
+
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: "/tmp/ "
+}))
+
 
 app.use("/api/v1/user", router)
 
