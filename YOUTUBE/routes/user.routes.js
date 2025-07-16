@@ -20,7 +20,7 @@ router.post("/signup", async (req, res) => {
             logoId: uploadeImg.public_id
         })
         let user = await newUser.save()
-        res.status(202).json({
+        res.status(201).json({
             user
         })
     } catch (error) {
