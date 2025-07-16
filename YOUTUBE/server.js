@@ -18,7 +18,7 @@ app.use(bodyparser.json())
 
 app.use(fileUpload({
   useTempFiles: true,
-  tempFileDir: "/tmp/ "
+  tempFileDir: "/tmp/"
 }))
 
 
