@@ -7,11 +7,11 @@ export const createCourse = async (req, res) => {
     try {
 
         // passing Image/files yani get req se image mangwange
-        const coverimage = req.files.coverimage;
-
         if (!req.files || Object.keys(req.files).length === 0) {
             return res.status(400).json({ error: "No file uploaded" });
         }
+
+        const coverimage = req.files.coverimage;
 
         // images format checking
         const allowFormat = ["image/png", "image/jpeg"]
