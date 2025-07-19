@@ -40,7 +40,7 @@ export const createCourse = async (req, res) => {
             course
         })
         console.log("creation Successfully 🔥");
-        
+
     } catch (error) {
         console.log(error, "error in course controller");
         res.status(500).json({ error: "Error! Creating vai course or unfeild some" })
@@ -49,3 +49,23 @@ export const createCourse = async (req, res) => {
 
 }
 
+export const updateCourse = async (req, res) => {
+
+    const { courseId } = req.params;
+    const { title, description, price, coverimage } = req.body
+
+    try {
+        const course = await Course.updateOne({ _id: courseId }, {
+            title, description, price, coverimage: {
+                public_id: coverimage?.public_id,
+                url: coverimage?.url
+            }
+
+        })
+        res.status(201).json({ message: "Course updated Successfully" })
+        console.log("Update the Course");
+    } catch (error) {
+        console.log(error, "Error in Course Updating");
+        res.status(500).json({ error: "Something went Wrong when creating updateCourse" })
+    }
+}
