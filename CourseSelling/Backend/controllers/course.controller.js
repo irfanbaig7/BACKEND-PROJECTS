@@ -39,6 +39,8 @@ export const createCourse = async (req, res) => {
             message: "created course 🤩",
             course
         })
+        console.log("creation Successfully 🔥");
+        
     } catch (error) {
         console.log(error, "error in course controller");
         res.status(500).json({ error: "Error! Creating vai course or unfeild some" })
