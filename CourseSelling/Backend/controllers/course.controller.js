@@ -69,3 +69,17 @@ export const updateCourse = async (req, res) => {
         res.status(500).json({ error: "Something went Wrong when creating updateCourse" })
     }
 }
+
+
+export const deleteCourse = async (req, res) => {
+    const { courseId } = req.params;
+    try {
+        const course = await Course.findOneAndDelete({_id: courseId})
+        res.status(201).json({ message: "deleted Successfully" })
+        console.log("Deleted the Course");
+    } catch (error) {
+        console.log(error, "Error in course deleting");
+        res.status(500).json({error: "Something went Wrong when Deleting deleteCourse"})
+        
+    }
+}
