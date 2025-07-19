@@ -1,5 +1,6 @@
 import { Course } from "../models/course.model.js"
 import { v2 as cloudinary } from "cloudinary"
+
 export const createCourse = async (req, res) => {
 
     const { title, description, price } = req.body
@@ -70,7 +71,6 @@ export const updateCourse = async (req, res) => {
     }
 }
 
-
 export const deleteCourse = async (req, res) => {
     const { courseId } = req.params;
     try {
@@ -83,3 +83,27 @@ export const deleteCourse = async (req, res) => {
 
     }
 }
+
+export const getallCourse = async (req, res) => {
+    try {
+        const allCourse = await Course.findById({})
+        res.status(201).json({ allCourse })
+        console.log("get All Courses");
+    } catch (error) {
+        console.log("Error in getAllCourse");
+        res.status(500).json({ error: "Somthing went wrong while creating getAllcource" })
+    }
+}
+
+export const getOneCourse = async (req, res) => {
+    const { courseId } = req.params;
+    try {
+        const oneCourse = await Course.find({ _id: courseId })
+        res.status(201).json({ oneCourse })
+        console.log("get All Courses");
+    } catch (error) {
+        console.log("Error in getAllCourse");
+        res.status(500).json({ error: "Somthing went wrong while creating getAllcource" })
+    }
+}
+
