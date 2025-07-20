@@ -86,11 +86,11 @@ export const deleteCourse = async (req, res) => {
 
 export const getallCourse = async (req, res) => {
     try {
-        const allCourse = await Course.findById({})
+        const allCourse = await Course.find({})
         res.status(201).json({ allCourse })
         console.log("get All Courses");
     } catch (error) {
-        console.log("Error in getAllCourse");
+        console.log("Error in getAllCourse", error);
         res.status(500).json({ error: "Somthing went wrong while creating getAllcource" })
     }
 }
