@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import courseRoute from "../Backend/routes/course.route.js"
+import userRoute from "./routes/user.route.js"
 import fileupload from "express-fileupload"
 import { v2 as cloudinary } from "cloudinary"
 
@@ -40,6 +41,9 @@ cloudinary.config({
 // dinfining routes
 app.use("/api/v1/course", courseRoute)
 
+app.use("/api/v1/user", userRoute)
+
+
 app.listen(port, () => {
     console.log(`Server is runing on port : ${port}`);
-}) 
+})
