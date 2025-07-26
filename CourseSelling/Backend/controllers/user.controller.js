@@ -58,14 +58,14 @@ export const signupUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     const { email, password } = req.body
     try {
-        const currentUserEmail = await User.findOne({ email })
-        const currentUserPass = await bcrypt.compare(password, currentUserEmail.password)
-        if (!currentUserEmail || !currentUserPass) {
+        const user = await User.findOne({ email })
+        const currentUserPass = await bcrypt.compare(password, user.password)
+        if (!user || !currentUserPass) {
             return res.status(403).json({ error: "Invalid Credentials" }) // passing wrong data
         }
 
-        res.status(201).json({ message: `${currentUserEmail.username} was Login Successfully 😸`}) // 201 means fullfil data
-        console.log(currentUserEmail.username, "😎 was Login SuccessFully.." );
+        res.status(201).json({ message: `${user.username} was Login Successfully 😸`, user}) // 201 means fullfil data
+        console.log(user.username, "😎 was Login SuccessFully.." );
     } catch (error) {
         console.log(error, "Error comes in to vai creating login");
         res.status(500).json({
