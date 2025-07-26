@@ -49,8 +49,27 @@ export const signupUser = async (req, res) => {
     } catch (error) {
         console.error("❌ Error in signupUser:", error);
         res.status(500).json({
-            error: "Something went wrong. Please try again later.",
+            error: "Something went wrong. Inside signUp User.",
         });
     }
 };
 
+
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body
+    try {
+        const currentUserEmail = await User.findOne({ email })
+        const currentUserPass = await bcrypt.compare(password, currentUserEmail.password)
+        if (!currentUserEmail || !currentUserPass) {
+            return res.status(403).json({ error: "Invalid Credentials" }) // passing wrong data
+        }
+
+        res.status(201).json({ message: "Login Successfull 😸" }) // 201 means fullfil data
+        console.log("Login SuccessFully 😉");
+    } catch (error) {
+        console.log(error, "Error comes in to vai creating login");
+        res.status(500).json({
+            error: "Something went wrong. inside LoginUser",
+        });
+    }
+}
