@@ -64,8 +64,8 @@ export const loginUser = async (req, res) => {
             return res.status(403).json({ error: "Invalid Credentials" }) // passing wrong data
         }
 
-        res.status(201).json({ message: "Login Successfull 😸" }) // 201 means fullfil data
-        console.log("Login SuccessFully 😉");
+        res.status(201).json({ message: `${currentUserEmail.username} was Login Successfully 😸`}) // 201 means fullfil data
+        console.log(currentUserEmail.username, "😎 was Login SuccessFully.." );
     } catch (error) {
         console.log(error, "Error comes in to vai creating login");
         res.status(500).json({
