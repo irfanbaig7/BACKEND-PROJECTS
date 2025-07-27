@@ -1,6 +1,10 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
+import jwt from "jsonwebtoken"
+import config from "../config.js";
+
+
 
 export const signupUser = async (req, res) => {
     const userSchema = z.object({
@@ -64,7 +68,13 @@ export const loginUser = async (req, res) => {
             return res.status(403).json({ error: "Invalid Credentials" }) // passing wrong data
         }
 
-        res.status(201).json({ message: `${user.username} was Login Successfully 😸`, user}) // 201 means fullfil data
+        // using here JWT
+        const token = jwt.sign({ id: user._id }, config.jwtUserPassword)
+
+        // also store in cookies our token
+        res.cookie("jwt", token)
+
+        res.status(201).json({ message: `${user.username} was Login Successfully 😸`, user, token}) // 201 means fullfil data
         console.log(user.username, "😎 was Login SuccessFully.." );
     } catch (error) {
         console.log(error, "Error comes in to vai creating login");
