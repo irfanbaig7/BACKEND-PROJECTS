@@ -77,9 +77,20 @@ export const loginUser = async (req, res) => {
         res.status(201).json({ message: `${user.username} was Login Successfully 😸`, user, token}) // 201 means fullfil data
         console.log(user.username, "😎 was Login SuccessFully.." );
     } catch (error) {
-        console.log(error, "Error comes in to vai creating login");
+        console.log(error, "Error comes into vai creating login");
         res.status(500).json({
             error: "Something went wrong. inside LoginUser",
         });
     }
 }
+
+export const logoutUser = async (req, res) => {
+ try {
+    res.clearCookie("jwt")
+    res.status(200).json({message: "Logout Successfully"})
+ } catch (error) {
+    res.status(500).json({error: "Error inside Logout controller"})
+    console.log(error,"Something went wrong, Inside Logout User"); 
+ }
+} 
+ 
